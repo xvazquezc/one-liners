@@ -27,3 +27,6 @@ awk -F'>' 'NR==FNR{ids[$0]; next} NF>1{f=($2 in ids)} f' ids.txt myseqs.fasta
 sort -k1,1n -k 2,2 -k5,5gr myfile.tsv
 ```
 > Sort first based on number on column 1, then standard (alphabetic) sorting of column 2, and finally do "general numeric sort" in reverse order of column 5 (i.e. recognises scientific notation and sorts high to low).
+
+## Other similar repos
+https://github.com/stephenturner/oneliners
