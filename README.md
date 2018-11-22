@@ -18,6 +18,13 @@ awk -F'>' 'NR==FNR{ids[$0]; next} NF>1{f=($2 in ids)} f' ids.txt myseqs.fasta
 ```
 > Where `ids.txt` is a list of the names of the sequences to extract from `myseqs.fasta`
 
+### Sum values based on category of another column
+
+This will add up the values of column 2, giving the total sum of unique values in column 1 ([source](https://unix.stackexchange.com/a/242972)).
+```
+awk -F "\t" '{a[$1] += $2; OFS="\t"} END {for (i in a) print i, a[i]}' myfile.tsv
+```
+
 
 ## BASH
 
