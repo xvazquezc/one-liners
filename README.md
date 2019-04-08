@@ -26,12 +26,23 @@ awk 'BEGIN {RS = ">" ; FS = "\n" ; ORS = ""} $2 {print ">"$0}' myseqs.fasta
 > Useful to do any work from the exported amino acid gene calls from `anvi-get-sequences-for-gene-calls` as it keeps the non-protein coding gene headers with no sequence.
 
 ### Sum values based on category of another column
-
 This will add up the values of column 2, giving the total sum for each unique value in column 1 ([source](https://unix.stackexchange.com/a/242972)).
 ```bash
 awk -F "\t" '{a[$1] += $2; OFS="\t"} END {for (i in a) print i, a[i]}' myfile.tsv
 ```
 
+### Simplify fasta headers (remove anything after first space)
+[Source](https://www.biostars.org/p/336428/#336431)
+```bash
+awk 'BEGIN{OFS=FS=" "}{if(/^>/){NF--}}{print $1}' myseqs.fasta
+```
+> Change the `OFS=FS=" "` to the character marking where you want to delete from.
+> Convenient for cleaning fasta headers for phylo work.
+
+This is another alternative that should work in most cases:
+```bash
+cut -f1 -d " " myseqs.fasta
+```
 
 ## BASH
 
