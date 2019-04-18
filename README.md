@@ -37,6 +37,7 @@ awk -F "\t" '{a[$1] += $2; OFS="\t"} END {for (i in a) print i, a[i]}' myfile.ts
 awk 'BEGIN{OFS=FS=" "}{if(/^>/){NF--}}{print $1}' myseqs.fasta
 ```
 > Change the `OFS=FS=" "` to the character marking where you want to delete from.
+
 > Convenient for cleaning fasta headers for phylo work.
 
 This is another alternative that should work in most cases:
@@ -52,6 +53,17 @@ cut -f1 -d " " myseqs.fasta
 sort -k1,1n -k 2,2 -k5,5gr myfile.tsv
 ```
 > Sort first based on number on column 1, then standard (alphabetic) sorting of column 2, and finally do "general numeric sort" in reverse order of column 5 (i.e. recognises scientific notation and sorts high to low).
+
+### Count bp in FastQ files
+[Source](https://www.biostars.org/p/78043/#130586)
+```bash
+cat test.fastq | paste - - - - | cut -f 2 | tr -d '\n' | wc -c
+```
+> `paste` places all lines in 4 columns.
+
+> The second line in each FastQ record is the actual sequence (we grab them with `cut`).
+
+> `tr` is used to remove end of line (`\n`) characters, otherwise `wc` counts them.
 
 ## Other similar repos and resources
 
