@@ -67,6 +67,7 @@ cat test.fastq | paste - - - - | cut -f 2 | tr -d '\n' | wc -c
 
 ## Other similar repos and resources
 
-https://github.com/stephenturner/oneliners
-
-https://devhints.io/
+* https://github.com/stephenturner/oneliners
+* https://devhints.io/
+* http://www.filiphusnik.com/content/bioinformatics-one-liners
+* https://astrobiomike.github.io/bash/one_liners
