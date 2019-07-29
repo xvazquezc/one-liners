@@ -10,6 +10,12 @@ Pretty useful for big tables ([source](https://stackoverflow.com/a/24118223/6554
 ```bash
 awk -F'\t' -v c='colname' 'NR==1{for (i=1; i<=NF; i++) if ($i==c){p=i; break}; next} {print $p}' myfile.tsv
 ```
+> Apparently this has issues if you want to retrieve the column in the last position: it returns the whole line.
+
+Alternative ([source](https://www.unix.com/shell-programming-and-scripting/86618-search-column-name-awk.html)):
+```bash
+awk -F'\t' -v colname='colname' '{if(NR==1) for(i=1;i<=NF;i++) { if($i~colname) { colnum=i;break} } else print $colnum}' myfile.tsv
+```
 
 ### Extract fasta sequences by name
 [Source](https://stackoverflow.com/a/49737831/6554591).
