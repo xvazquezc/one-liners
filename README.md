@@ -84,3 +84,4 @@ cat test.fastq | paste - - - - | cut -f 2 | tr -d '\n' | wc -c
 
 * https://wiki.bash-hackers.org
 * https://devhints.io/
+* https://github.com/learnbyexample/Command-line-text-processing ([Bookdown version](https://learnbyexample.gitbooks.io/command-line-text-processing/content/))
